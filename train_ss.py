@@ -13,7 +13,7 @@ from src.data import *
 from src.utils import *
 from src.eval_utils import *
 
-
+torch.set_float32_matmul_precision('high')
 def train_model(model_attrs: ModelAttributes, datahandler:DataloaderHandler, outer_i: int):
     train_dataloader, val_dataloader = datahandler.get_ss_train_val_dataloader(model_attrs.outputs_save_path, outer_i)
 

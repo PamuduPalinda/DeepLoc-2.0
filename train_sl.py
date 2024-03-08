@@ -10,6 +10,7 @@ import subprocess
 import os
 import warnings
 
+torch.set_float32_matmul_precision('high')
 warnings.filterwarnings(
     "ignore", ".*Trying to infer the `batch_size` from an ambiguous collection.*"
 )
