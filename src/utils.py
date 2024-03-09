@@ -59,6 +59,19 @@ def get_train_model_attributes(model_type):
             4000,
             1024
         )
+    elif model_type == HPA:
+        with open("models/ESM1b_alphabet.pkl", "rb") as f:
+            alphabet = pickle.load(f)
+        return ModelAttributes(
+            model_type,
+            ESM1bFrozen,
+            alphabet,
+            EMBEDDINGS[HPA]["embeds"],
+            "models/models_esm1b_hpa",
+            "outputs/esm1b_hpa/",
+            1022,
+            1280
+        )
     else:
         raise Exception("wrong model type provided expected Fast,Accurate got", model_type)
     

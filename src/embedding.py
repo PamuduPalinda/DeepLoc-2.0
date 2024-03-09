@@ -64,6 +64,9 @@ def generate_embeddings(model_attrs: ModelAttributes):
     elif model_attrs.model_type == ACCURATE:
         embed_dataloader = torch.utils.data.DataLoader(embed_dataset, collate_fn=BatchConverterProtT5(model_attrs.alphabet), batch_sampler=embed_batches)
         embed_prott5(embed_dataloader, EMBEDDINGS[model_attrs.model_type]["embeds"])
+    elif model_attrs.model_type == HPA:
+        embed_dataloader = torch.utils.data.DataLoader(embed_dataset, collate_fn=BatchConverter(model_attrs.alphabet), batch_sampler=embed_batches)
+        embed_esm1b(embed_dataloader, EMBEDDINGS[model_attrs.model_type]["embeds"])
     else:
         raise Exception("wrong model type provided expected Fast,Accurate got", model_attrs.model_type)
     
