@@ -18,7 +18,7 @@ EMBEDDINGS = {
         "source_fasta": "data_files/deeploc_swissprot_clipped4k.fasta"
     },
     HPA: {
-        "embeds": "data_files/embeddings/esm1b_hpa.h5",
+        "embeds": "data_files/embeddings/esm1b_swissprot.h5",
         "config": "hpa_esm1b.yaml",
         "source_fasta": "data_files/deeploc_hpa_clipped1k.fasta"
     }
