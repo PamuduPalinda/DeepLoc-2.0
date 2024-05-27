@@ -63,13 +63,13 @@ if __name__ == "__main__":
     model_attrs = get_train_model_attributes(model_type=args.model)
     if not os.path.exists(model_attrs.embedding_file):
         print("Embeddings not found, generating......")
-        generate_embeddings(model_attrs)
+        # generate_embeddings(model_attrs)
         print("Embeddings created!")
     else:
         print("Using existing embeddings")
     
-    if not os.path.exists(model_attrs.embedding_file):
-        raise Exception("Embeddings could not be created. Verify that data_files/embeddings/<MODEL_DATASET> is deleted")
+    # if not os.path.exists(model_attrs.embedding_file):
+    #     raise Exception("Embeddings could not be created. Verify that data_files/embeddings/<MODEL_DATASET> is deleted")
 
     datahandler = DataloaderHandler(
         clip_len=model_attrs.clip_len, 

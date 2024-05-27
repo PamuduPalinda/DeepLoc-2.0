@@ -10,17 +10,20 @@ EMBEDDINGS = {
     FAST: {
         "embeds": "data_files/embeddings/esm1b_swissprot.h5",
         "config": "swissprot_esm1b.yaml",
-        "source_fasta": "data_files/deeploc_swissprot_clipped1k.fasta"
+        "source_fasta": "data_files/deeploc_swissprot_clipped1k.fasta",
+        "available_embeds": "OneHot_deeploc_swissprot_clipped1k.npy"
     },
     ACCURATE: {
         "embeds": "data_files/embeddings/prott5_swissprot.h5",
         "config": "swissprot_prott5.yaml",
-        "source_fasta": "data_files/deeploc_swissprot_clipped4k.fasta"
+        "source_fasta": "data_files/deeploc_swissprot_clipped4k.fasta",
+        "available_embeds": "OneHot_deeploc_swissprot_clipped1k.npy"
     },
     HPA: {
         "embeds": "data_files/embeddings/esm1b_swissprot.h5",
         "config": "hpa_esm1b.yaml",
-        "source_fasta": "data_files/deeploc_hpa_clipped1k.fasta"
+        "source_fasta": "data_files/deeploc_hpa_clipped1k.fasta",
+        "available_embeds": "OneHot_deeploc_swissprot_clipped1k.npy"
     }
 }
 

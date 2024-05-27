@@ -225,13 +225,14 @@ class EmbeddingsLocalizationDataset(torch.utils.data.Dataset):
     Dataset of protein embeddings and the corresponding subcellular localization label.
     """
 
-    def __init__(self, embedding_file, data_df) -> None:
+    def __init__(self, available_embed_data, data_df) -> None:
         super().__init__()
         self.data_df = data_df
-        self.embeddings_file = embedding_file
+        self.available_embed_data = available_embed_data
     
     def __getitem__(self, index: int):
-        embedding = np.array(self.embeddings_file[self.data_df["ACC"][index]]).copy()
+        embedding = np.array(self.available_embed_data[index]).copy()
+        # embedding = np.array(self.embeddings_file[self.data_df["ACC"][index]]).copy()
         return self.data_df["Sequence"][index], embedding, self.data_df["Target"][index], self.data_df["TargetAnnot"][index], self.data_df["ACC"][index]
     
     def get_batch_indices(self, toks_per_batch, max_batch_size, extra_toks_per_seq=0):
@@ -271,8 +272,7 @@ class TrainBatchConverter(object):
     processed (labels + tensor) batch.
     """
 
-    def __init__(self, alphabet, embed_len):
-        self.alphabet = alphabet
+    def __init__(self, embed_len):
         self.embed_len = embed_len
 
     def __call__(self, raw_batch):
@@ -330,16 +330,19 @@ class DataloaderHandler:
         split_train_df =  train_df.iloc[split_train_idx].reset_index(drop=True)
         split_val_df = train_df.iloc[split_val_idx].reset_index(drop=True)
 
+        file_path = '../OneHot_deeploc_swissprot_clipped1k.npy'
+        available_embed_data = np.load(file_path)
+
         # print(split_train_df[CATEGORIES].mean())
         # print(split_val_df[CATEGORIES].mean())
-        embedding_file = h5py.File(self.embedding_file, "r")
-        train_dataset = EmbeddingsLocalizationDataset(embedding_file, split_train_df)
+        # embedding_file = h5py.File(self.embedding_file, "r")
+        train_dataset = EmbeddingsLocalizationDataset(available_embed_data, split_train_df)
         train_batches = train_dataset.get_batch_indices(4096*4, BATCH_SIZE, extra_toks_per_seq=0)
-        train_dataloader = torch.utils.data.DataLoader(train_dataset, collate_fn=TrainBatchConverter(self.alphabet, self.embed_len), batch_sampler=train_batches)
+        train_dataloader = torch.utils.data.DataLoader(train_dataset, collate_fn=TrainBatchConverter(self.embed_len), batch_sampler=train_batches)
 
-        val_dataset = EmbeddingsLocalizationDataset(embedding_file, split_val_df)
+        val_dataset = EmbeddingsLocalizationDataset(available_embed_data, split_val_df)
         val_batches = val_dataset.get_batch_indices(4096*4, BATCH_SIZE, extra_toks_per_seq=0)
-        val_dataloader = torch.utils.data.DataLoader(val_dataset, collate_fn=TrainBatchConverter(self.alphabet, self.embed_len), batch_sampler=val_batches)
+        val_dataloader = torch.utils.data.DataLoader(val_dataset, collate_fn=TrainBatchConverter(self.embed_len), batch_sampler=val_batches)
         return train_dataloader, val_dataloader
 
     def get_partition(self, outer_i):
