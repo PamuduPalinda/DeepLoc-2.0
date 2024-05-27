@@ -53,8 +53,8 @@ if __name__ == "__main__":
 
     parser.add_argument(
         "-m","--model", 
-        default="Hpa",
-        choices=['Accurate', 'Fast', 'Hpa'],
+        default="onehot",
+        choices=['Accurate', 'Fast', 'Hpa', 'onehot'],
         type=str,
         help="Model to use."
     )

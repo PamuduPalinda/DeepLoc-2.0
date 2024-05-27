@@ -5,6 +5,7 @@ SS_CATEGORIES = ["NULL", "SP", "TM", "MT", "CH", "TH", "NLS", "NES", "PTS", "GPI
 FAST = "Fast"
 ACCURATE = "Accurate"
 HPA = "Hpa"
+ONEHOT = "onehot"
 
 EMBEDDINGS = {
     FAST: {
@@ -23,6 +24,12 @@ EMBEDDINGS = {
         "embeds": "data_files/embeddings/esm1b_swissprot.h5",
         "config": "hpa_esm1b.yaml",
         "source_fasta": "data_files/deeploc_hpa_clipped1k.fasta",
+        "available_embeds": "OneHot_deeploc_swissprot_clipped1k.npy"
+    },
+    ONEHOT: {
+        "embeds": "data_files/embeddings/esm1b_swissprot.h5",
+        "config": "swissprot_esm1b.yaml",
+        "source_fasta": "data_files/deeploc_swissprot_clipped1k.fasta",
         "available_embeds": "OneHot_deeploc_swissprot_clipped1k.npy"
     }
 }

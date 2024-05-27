@@ -330,7 +330,7 @@ class DataloaderHandler:
         split_train_df =  train_df.iloc[split_train_idx].reset_index(drop=True)
         split_val_df = train_df.iloc[split_val_idx].reset_index(drop=True)
 
-        file_path = '../OneHot_deeploc_swissprot_clipped1k.npy'
+        file_path = 'OneHot_deeploc_swissprot_clipped1k.npy'
         available_embed_data = np.load(file_path)
 
         # print(split_train_df[CATEGORIES].mean())

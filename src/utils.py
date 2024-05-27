@@ -72,6 +72,19 @@ def get_train_model_attributes(model_type):
             1022,
             1280
         )
+    elif model_type == ONEHOT:
+        with open("models/ESM1b_alphabet.pkl", "rb") as f:
+            alphabet = pickle.load(f)
+        return ModelAttributes(
+            model_type,
+            ESM1bFrozen,
+            alphabet,
+            EMBEDDINGS[FAST]["embeds"],
+            "models/models_onehot",
+            "outputs/onehot/",
+            1,
+            21
+        )
     else:
         raise Exception("wrong model type provided expected Fast,Accurate got", model_type)
     
