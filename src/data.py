@@ -354,19 +354,26 @@ class DataloaderHandler:
         data_df = get_swissprot_df(self.clip_len)
         test_df = data_df[data_df.Partition == outer_i].reset_index(drop=True)
         
-        embedding_file = h5py.File(self.embedding_file, "r")
-        test_dataset = EmbeddingsLocalizationDataset(embedding_file, test_df)
+        file_path = '../OneHot_deeploc_swissprot_clipped1k.npy'
+        available_embed_data = np.load(file_path)
+
+        # embedding_file = h5py.File(self.embedding_file, "r")
+        test_dataset = EmbeddingsLocalizationDataset(available_embed_data, test_df)
         test_batches = test_dataset.get_batch_indices(4096*4, BATCH_SIZE, extra_toks_per_seq=0)
-        test_dataloader = torch.utils.data.DataLoader(test_dataset, collate_fn=TrainBatchConverter(self.alphabet, self.embed_len), batch_sampler=test_batches)
+        test_dataloader = torch.utils.data.DataLoader(test_dataset, collate_fn=TrainBatchConverter(self.embed_len), batch_sampler=test_batches)
         return test_dataloader, test_df
 
     def get_partition_dataloader_inner(self, partition_i):
         data_df = get_swissprot_df(self.clip_len)
         test_df = data_df[data_df.Partition != partition_i].reset_index(drop=True)
-        embedding_file = h5py.File(self.embedding_file, "r")
-        test_dataset = EmbeddingsLocalizationDataset(embedding_file, test_df)
+
+        file_path = '../OneHot_deeploc_swissprot_clipped1k.npy'
+        available_embed_data = np.load(file_path)
+
+        # embedding_file = h5py.File(self.embedding_file, "r")
+        test_dataset = EmbeddingsLocalizationDataset(available_embed_data, test_df)
         test_batches = test_dataset.get_batch_indices(4096*4, BATCH_SIZE, extra_toks_per_seq=0)
-        test_dataloader = torch.utils.data.DataLoader(test_dataset, collate_fn=TrainBatchConverter(self.alphabet, self.embed_len), batch_sampler=test_batches)
+        test_dataloader = torch.utils.data.DataLoader(test_dataset, collate_fn=TrainBatchConverter(self.embed_len), batch_sampler=test_batches)
 
         return test_dataloader, test_df
     
