@@ -79,7 +79,7 @@ def get_train_model_attributes(model_type):
             model_type,
             ESM1bFrozen,
             alphabet,
-            EMBEDDINGS[FAST]["embeds"],
+            EMBEDDINGS[ONEHOT]["available_embeds"],
             "models/models_onehot",
             "outputs/onehot/",
             1,
