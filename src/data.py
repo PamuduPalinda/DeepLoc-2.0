@@ -320,7 +320,7 @@ class DataloaderHandler:
 
     def get_train_val_dataloaders(self, outer_i):
         data_df = get_swissprot_df(self.clip_len)
-        
+        print(f"data_df head:\n{data_df.head(3)}")
         train_df = data_df[data_df.Partition != outer_i].reset_index(drop=True)
 
         X = np.stack(train_df["ACC"].to_numpy())
