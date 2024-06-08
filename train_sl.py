@@ -61,6 +61,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     model_attrs = get_train_model_attributes(model_type=args.model)
+    print(model_attrs)
     if not os.path.exists(model_attrs.embedding_file):
         print("Embeddings not found, generating......")
         # generate_embeddings(model_attrs)
