@@ -17,7 +17,7 @@ warnings.filterwarnings(
 
 def train_model(model_attrs: ModelAttributes, datahandler:DataloaderHandler, outer_i: int):
     train_dataloader, val_dataloader = datahandler.get_train_val_dataloaders(outer_i)
-
+    print(f"train_dataloader: {train_dataloader}")
     checkpoint_callback = ModelCheckpoint(
         monitor='bce_loss',
         dirpath=model_attrs.save_path,
