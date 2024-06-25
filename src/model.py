@@ -57,7 +57,7 @@ class BaseModel(pl.LightningModule):
         self.attn_head = AttentionHead(256, 1)
         self.clf_head = nn.Linear(256, 11)
         self.kld = nn.KLDivLoss(reduction="batchmean")
-        self.lr = 1e-3
+        self.lr = 1e-2
 
     def forward(self, embedding, lens, non_mask):
         x = self.initial_ln(embedding)
