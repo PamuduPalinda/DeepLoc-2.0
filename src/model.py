@@ -153,7 +153,7 @@ class SignalTypeMLP(pl.LightningModule):
         super().__init__()
         self.ln1 = nn.Linear(267, 32)
         self.ln2 = nn.Linear(32, 9)
-        self.lr = 1e-3
+        self.lr = 5e-3
 
     def forward(self, x):
         x = nn.Tanh()(self.ln1(x))

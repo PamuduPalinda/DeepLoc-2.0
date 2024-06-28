@@ -46,6 +46,19 @@ def get_train_model_attributes(model_type):
             1022,
             1280
         )
+    elif model_type == LR:
+        with open("models/ESM1b_alphabet.pkl", "rb") as f:
+            alphabet = pickle.load(f)
+        return ModelAttributes(
+            model_type,
+            ESM1bFrozen,
+            alphabet,
+            EMBEDDINGS[LR]["embeds"],
+            "models/models_esm1b_lr0.005",
+            "outputs/esm1b_lr0.005/",
+            1022,
+            1280
+        )
     elif model_type == ACCURATE:
         alphabet = T5Tokenizer.from_pretrained("Rostlab/prot_t5_xl_uniref50", do_lower_case=False )
         
