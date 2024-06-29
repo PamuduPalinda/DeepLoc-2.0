@@ -322,7 +322,10 @@ class DataloaderHandler:
         data_df = get_swissprot_df(self.clip_len)
         train_df = data_df[data_df.Partition != outer_i].reset_index(drop=True)
         print(f"data_df head:\n{data_df.head(3)}")
+        print(f"data_df shape:\n{data_df.shape}")
+        
         print(f"train_df head:\n{train_df.head(3)}")
+        print(f"train_df shape:\n{train_df.shape}")
 
         X = np.stack(train_df["ACC"].to_numpy())
         sss_tt = ShuffleSplit(n_splits=1, test_size=2048, random_state=0)
