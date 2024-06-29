@@ -155,7 +155,7 @@ def get_swissprot_df(clip_len):
     data_df["Target"] = data_df[CATEGORIES].values.tolist()    
 
     annot_df = annot_df[~annot_df.ACC.isin(nes_exclude_list)].reset_index(drop=True)
-    print(f"annot_df head:\n{annot_df.head(3)}")
+    # print(f"annot_df head:\n{annot_df.head(3)}")
     data_df = data_df[~data_df.ACC.isin(swissprot_exclusion_list)].reset_index(drop=True)
     data_df = data_df.merge(annot_df[["ACC", "ANNOT", "Types", "TargetAnnot"]], on="ACC", how="left")
     data_df['TargetAnnot'] = data_df['TargetAnnot'].fillna(0)
@@ -359,7 +359,7 @@ class DataloaderHandler:
         data_df = get_swissprot_df(self.clip_len)
         test_df = data_df[data_df.Partition == outer_i].reset_index(drop=True)
         
-        file_path = '../OneHot_deeploc_swissprot_clipped1k.npy'
+        file_path = self.embedding_file
         available_embed_data = np.load(file_path)
 
         # embedding_file = h5py.File(self.embedding_file, "r")
@@ -372,7 +372,7 @@ class DataloaderHandler:
         data_df = get_swissprot_df(self.clip_len)
         test_df = data_df[data_df.Partition != partition_i].reset_index(drop=True)
 
-        file_path = '../OneHot_deeploc_swissprot_clipped1k.npy'
+        file_path = self.embedding_file
         available_embed_data = np.load(file_path)
 
         # embedding_file = h5py.File(self.embedding_file, "r")
