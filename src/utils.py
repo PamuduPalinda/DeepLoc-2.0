@@ -77,7 +77,7 @@ def get_train_model_attributes(model_type):
             alphabet = pickle.load(f)
         return ModelAttributes(
             model_type,
-            ESM1bFrozen,
+            OneHot,
             alphabet,
             EMBEDDINGS[ONEHOT]["available_embeds"],
             "models/models_onehot",
