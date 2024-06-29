@@ -359,7 +359,7 @@ class DataloaderHandler:
         data_df = get_swissprot_df(self.clip_len)
         test_df = data_df[data_df.Partition == outer_i].reset_index(drop=True)
         
-        file_path = '../OneHot_deeploc_swissprot_clipped1k.npy'
+        file_path = self.embedding_file
         available_embed_data = np.load(file_path)
 
         # embedding_file = h5py.File(self.embedding_file, "r")
@@ -372,7 +372,7 @@ class DataloaderHandler:
         data_df = get_swissprot_df(self.clip_len)
         test_df = data_df[data_df.Partition != partition_i].reset_index(drop=True)
 
-        file_path = '../OneHot_deeploc_swissprot_clipped1k.npy'
+        file_path = self.embedding_file
         available_embed_data = np.load(file_path)
 
         # embedding_file = h5py.File(self.embedding_file, "r")
