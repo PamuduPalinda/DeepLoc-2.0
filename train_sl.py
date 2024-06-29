@@ -54,8 +54,8 @@ if __name__ == "__main__":
 
     parser.add_argument(
         "-m","--model", 
-        default="onehot",
-        choices=['Accurate', 'Fast', 'Hpa', 'onehot', SEQVEC, BEPLER, CPCPROT],
+        default=SEQVEC,
+        choices=['Accurate', 'Fast', 'Hpa', ONEHOT, SEQVEC, BEPLER, CPCPROT],
         type=str,
         help="Model to use."
     )
