@@ -155,6 +155,7 @@ def get_swissprot_df(clip_len):
     data_df["Target"] = data_df[CATEGORIES].values.tolist()    
 
     annot_df = annot_df[~annot_df.ACC.isin(nes_exclude_list)].reset_index(drop=True)
+    print(f"annot_df head:\n{annot_df.head(3)}")
     data_df = data_df[~data_df.ACC.isin(swissprot_exclusion_list)].reset_index(drop=True)
     data_df = data_df.merge(annot_df[["ACC", "ANNOT", "Types", "TargetAnnot"]], on="ACC", how="left")
     data_df['TargetAnnot'] = data_df['TargetAnnot'].fillna(0)
@@ -320,10 +321,10 @@ class DataloaderHandler:
 
     def get_train_val_dataloaders(self, outer_i):
         data_df = get_swissprot_df(self.clip_len)
-        train_df = data_df[data_df.Partition != outer_i].reset_index(drop=True)
         print(f"data_df head:\n{data_df.head(3)}")
         print(f"data_df shape:\n{data_df.shape}")
-        
+        train_df = data_df[data_df.Partition != outer_i].reset_index(drop=True)
+                
         print(f"train_df head:\n{train_df.head(3)}")
         print(f"train_df shape:\n{train_df.shape}")
 
