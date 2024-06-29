@@ -103,11 +103,11 @@ def get_train_model_attributes(model_type):
             alphabet = pickle.load(f)
         return ModelAttributes(
             model_type,
-            SeqVec,
+            Bepler,
             alphabet,
-            EMBEDDINGS[SEQVEC]["available_embeds"],
-            "models/models_seqvec",
-            "outputs/seqvec/",
+            EMBEDDINGS[BEPLER]["available_embeds"],
+            "models/models_bepler",
+            "outputs/bepler/",
             1,
             121
         )
@@ -116,7 +116,7 @@ def get_train_model_attributes(model_type):
             alphabet = pickle.load(f)
         return ModelAttributes(
             model_type,
-            Bepler,
+            CPCProt,
             alphabet,
             EMBEDDINGS[CPCPROT]["available_embeds"],
             "models/models_cpcprot",
