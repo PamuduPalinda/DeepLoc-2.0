@@ -150,6 +150,18 @@ class OneHot(BaseModel):
     def __init__(self):
         super().__init__(21)
 
+class SeqVec(BaseModel):
+    def __init__(self):
+        super().__init__(1024)
+
+class Bepler(BaseModel):
+    def __init__(self):
+        super().__init__(121)
+
+class CPCProt(BaseModel):
+    def __init__(self):
+        super().__init__(512)
+
 pos_weights_annot = torch.tensor([0.23, 0.92, 0.98, 2.63, 5.64, 1.60, 2.37, 1.87, 2.03])
 class SignalTypeMLP(pl.LightningModule):
     def __init__(self):

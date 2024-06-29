@@ -85,6 +85,45 @@ def get_train_model_attributes(model_type):
             1,
             21
         )
+    elif model_type == SEQVEC:
+        with open("models/ESM1b_alphabet.pkl", "rb") as f:
+            alphabet = pickle.load(f)
+        return ModelAttributes(
+            model_type,
+            SeqVec,
+            alphabet,
+            EMBEDDINGS[SEQVEC]["available_embeds"],
+            "models/models_seqvec",
+            "outputs/seqvec/",
+            1,
+            1024
+        )
+    elif model_type == BEPLER:
+        with open("models/ESM1b_alphabet.pkl", "rb") as f:
+            alphabet = pickle.load(f)
+        return ModelAttributes(
+            model_type,
+            SeqVec,
+            alphabet,
+            EMBEDDINGS[SEQVEC]["available_embeds"],
+            "models/models_seqvec",
+            "outputs/seqvec/",
+            1,
+            121
+        )
+    elif model_type == CPCPROT:
+        with open("models/ESM1b_alphabet.pkl", "rb") as f:
+            alphabet = pickle.load(f)
+        return ModelAttributes(
+            model_type,
+            Bepler,
+            alphabet,
+            EMBEDDINGS[CPCPROT]["available_embeds"],
+            "models/models_cpcprot",
+            "outputs/cpcprot/",
+            1,
+            512
+        )
     else:
         raise Exception("wrong model type provided expected Fast,Accurate got", model_type)
     

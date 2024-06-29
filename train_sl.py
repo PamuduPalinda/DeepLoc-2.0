@@ -5,6 +5,7 @@ from src.utils import *
 from src.eval_utils import *
 from src.embedding import *
 from src.metrics import *
+from src.constants import *
 import argparse
 import subprocess
 import os
@@ -54,7 +55,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "-m","--model", 
         default="onehot",
-        choices=['Accurate', 'Fast', 'Hpa', 'onehot'],
+        choices=['Accurate', 'Fast', 'Hpa', 'onehot', SEQVEC, BEPLER, CPCPROT],
         type=str,
         help="Model to use."
     )

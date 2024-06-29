@@ -6,6 +6,9 @@ FAST = "Fast"
 ACCURATE = "Accurate"
 HPA = "Hpa"
 ONEHOT = "onehot"
+SEQVEC = "seqvec"
+BEPLER = "bepler"
+CPCPROT = "cpcprot"
 
 EMBEDDINGS = {
     FAST: {
@@ -31,7 +34,25 @@ EMBEDDINGS = {
         "config": "swissprot_esm1b.yaml",
         "source_fasta": "data_files/deeploc_swissprot_clipped1k.fasta",
         "available_embeds": "OneHot_deeploc_swissprot_clipped1k.npy"
-    }
+    },
+    SEQVEC: {
+        "embeds": "data_files/embeddings/esm1b_swissprot.h5",
+        "config": "swissprot_esm1b.yaml",
+        "source_fasta": "data_files/deeploc_swissprot_clipped1k.fasta",
+        "available_embeds": "SeqVec_deeploc_hpa_clipped1k.npy"
+    },
+    BEPLER: {
+        "embeds": "data_files/embeddings/esm1b_swissprot.h5",
+        "config": "swissprot_esm1b.yaml",
+        "source_fasta": "data_files/deeploc_swissprot_clipped1k.fasta",
+        "available_embeds": "Bepler_deeploc_swissprot_clipped1k.npy"
+    },
+    CPCPROT: {
+        "embeds": "data_files/embeddings/esm1b_swissprot.h5",
+        "config": "swissprot_esm1b.yaml",
+        "source_fasta": "data_files/deeploc_swissprot_clipped1k.fasta",
+        "available_embeds": "CPCProt_deeploc_swissprot_clipped1k.npy"
+    },
 }
 
 SIGNAL_DATA = "data_files/multisub_ninesignals.pkl"
