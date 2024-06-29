@@ -155,7 +155,7 @@ def get_swissprot_df(clip_len):
     data_df["Target"] = data_df[CATEGORIES].values.tolist()    
 
     annot_df = annot_df[~annot_df.ACC.isin(nes_exclude_list)].reset_index(drop=True)
-    print(f"annot_df head:\n{annot_df.head(3)}")
+    # print(f"annot_df head:\n{annot_df.head(3)}")
     data_df = data_df[~data_df.ACC.isin(swissprot_exclusion_list)].reset_index(drop=True)
     data_df = data_df.merge(annot_df[["ACC", "ANNOT", "Types", "TargetAnnot"]], on="ACC", how="left")
     data_df['TargetAnnot'] = data_df['TargetAnnot'].fillna(0)
