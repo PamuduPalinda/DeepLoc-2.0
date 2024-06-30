@@ -152,7 +152,7 @@ class OneHot(BaseModel):
 
 class SeqVec(BaseModel):
     def __init__(self):
-        super().__init__(1024)
+        super().__init__(136)
 
 class Bepler(BaseModel):
     def __init__(self):

@@ -96,7 +96,7 @@ def get_train_model_attributes(model_type):
             "models/models_seqvec",
             "outputs/seqvec/",
             1,
-            1024
+            136
         )
     elif model_type == BEPLER:
         with open("models/ESM1b_alphabet.pkl", "rb") as f:
